@@ -1,0 +1,19 @@
+//mongoose is layer over the mongoDB to connect our database
+const mongoose = require("mongoose");
+const config = require("config");
+const db = config.get("mongoURI");
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(db);
+
+    console.log("MongoDB Database Connected......");
+  } catch (err) {
+    console.error(err.message);
+
+    //Exit Process With Failure
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
